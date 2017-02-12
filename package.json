@@ -1,0 +1,26 @@
+{
+  "name": "jokempo",
+  "version": "1.0.0",
+  "description": "rock paper scissor game written in javascript",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robsonrosa/jokempo.git"
+  },
+  "keywords": [
+    "jokempo",
+    "rock",
+    "paper",
+    "scissor",
+    "javascript"
+  ],
+  "author": "robsonrosa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robsonrosa/jokempo/issues"
+  },
+  "homepage": "https://github.com/robsonrosa/jokempo#readme"
+}
