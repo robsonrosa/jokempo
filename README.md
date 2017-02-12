@@ -4,16 +4,16 @@
 ### Core
 Game coding
 
-* Game
-  * name: `string`
-  * description: `string`
-  * options: `GameOptionCollection`
-  * preferences: `GamePreference[]`  (future)
+* Game (all properties are private - can't be change after its creation)
+  * getName(): `string`
+  * getDescription(): `string`
+  * getOptions(): `GameOptionCollection`
+  * getPreferences(): `GamePreference[]`  (future)
 
-* GameOption
-  * name: `string`
-  * wins: `GameOption[]` (options which lose from this one)
-  * loses: `GameOption[]` (options which win this one)
+* GameOption (all properties are private - can't be change after its creation)
+  * getName(): `string`
+  * getWins(): `GameOption[]` (options which lose from this one)
+  * getLoses(): `GameOption[]` (options which win this one)
 
 * GameOptionCollection (to ensure that the options won't be changed after the game starts)
   * options: `GameOption[]` (private)
