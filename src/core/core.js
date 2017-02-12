@@ -1,5 +1,4 @@
 module.exports = {
-  GameOptionCollection: class {},
 
   Game: class {
     constructor(name, description, options) {
@@ -15,5 +14,15 @@ module.exports = {
       this.getWins = () => wins;
       this.getLoses = () => loses;
     }
+  },
+
+  GameOptionCollection: class {
+    constructor() {
+      let gameOptions = [];
+      this.size = () => gameOptions.length;
+      this.get = () => gameOptions.slice();
+      this.add = (gameOption) => gameOptions.push(gameOption);
+    }
   }
+
 };
