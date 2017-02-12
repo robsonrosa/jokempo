@@ -7,5 +7,13 @@ module.exports = {
       this.getDescription = () => description;
       this.getOptions = () => options;
     }
+  },
+
+  GameOption: class {
+    constructor(name, wins, loses) {
+      this.getName = () => name;
+      this.getWins = () => wins;
+      this.getLoses = () => loses;
+    }
   }
 };
