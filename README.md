@@ -7,13 +7,18 @@ Game coding
 * Game
   * name: `string`
   * description: `string`
-  * options: `GameOption[]`
+  * options: `GameOptionCollection`
   * preferences: `GamePreference[]`  (future)
 
 * GameOption
   * name: `string`
   * wins: `GameOption[]` (options which lose from this one)
   * loses: `GameOption[]` (options which win this one)
+
+* GameOptionCollection (to ensure that the options won't be changed after the game starts)
+  * options: `GameOption[]` (private)
+  * add: `GameOption`
+  * get: `GameOption[]` (a copy)
 
 * GameFactory
   * create(settings: `json`): `Game`
