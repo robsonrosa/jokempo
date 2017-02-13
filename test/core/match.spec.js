@@ -3,7 +3,6 @@ var chai = require('chai');
 var expect = chai.expect;
 
 var core = require('../../src/core/core');
-var match = require('../../src/core/match');
 
 describe('GameMatch', () => {
 
@@ -12,21 +11,21 @@ describe('GameMatch', () => {
     let p1 = new core.PlayerOption('p1', 'rock');
     let p2 = new core.PlayerOption('p2', 'paper');
     let players = [p1, p2];
-    let instance = new match.GameMatch(game, players);
+    let match = new core.GameMatch(game, players);
 
     it('Então ele deve ser inicializado com um nome', () => {
-      expect(instance.getGame()).to.be.deep.equals(game);
+      expect(match.getGame()).to.be.deep.equals(game);
     });
 
     it('Então ele deve ser inicializado com um array de opções dos jogadores', () => {
-      expect(instance.getPlayerOptions()).to.be.deep.equals(players);
+      expect(match.getPlayerOptions()).to.be.deep.equals(players);
     });
 
     it('Então ele não deve expor suas propriedades', () => {
-      expect(instance.game).to.be.undefined;
-      expect(instance.playerOptions).to.be.undefined;
-      expect(instance.setGame).to.be.undefined;
-      expect(instance.setPlayerOptions).to.be.undefined;
+      expect(match.game).to.be.undefined;
+      expect(match.playerOptions).to.be.undefined;
+      expect(match.setGame).to.be.undefined;
+      expect(match.setPlayerOptions).to.be.undefined;
     });
   });
 

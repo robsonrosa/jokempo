@@ -46,6 +46,13 @@ module.exports = {
       this.getName = () => name;
       this.getChoice = () => choice;
     }
+  },
+
+  GameMatch: class {
+    constructor(game, playerOptions) {
+      this.getGame = () => game;
+      this.getPlayerOptions = () => playerOptions;
+    }
   }
 
 };
