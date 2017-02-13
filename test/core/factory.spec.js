@@ -8,10 +8,10 @@ var validation = require('../../src/core/validation');
 var settings = require('../resources/settings.json');
 
 describe('GameFactory', () => {
-  let validatorStub = sinon.stub(validation.GameValidator.prototype, 'validate');
+  let validator = { validate: sinon.spy() };
 
   describe('Quando eu criar uma instância de um jogo sem informar configurações', () => {
-    let game = new factory.GameFactory().create(null);
+    let game = new factory.GameFactory(validator).create(null);
 
     it('Então nenhum erro deve ocorrer, pois o GameValidator estará encarregado de verificar se é um jogo válido', () => {
       expect(game).to.exists;
@@ -19,7 +19,7 @@ describe('GameFactory', () => {
   });
 
   describe('Quando eu criar uma instância de um jogo', () => {
-    let game = new factory.GameFactory().create(settings);
+    let game = new factory.GameFactory(validator).create(settings);
 
     it('Então o jogo deve existir', () => {
       expect(game).to.exists;
@@ -57,8 +57,7 @@ describe('GameFactory', () => {
     });
 
     it('Deve verificar se foi criado um jogo válido', () => {
-      expect(validatorStub.calledWithMatch(sinon.match.instanceOf(core.Game))).to.be.true;
-      validatorStub.restore();
+      expect(validator.validate.calledWithMatch(sinon.match.instanceOf(core.Game))).to.be.true;
     });
   });
 });

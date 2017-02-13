@@ -59,9 +59,9 @@ class GameOptionCollectionFactory {
 
 module.exports = {
   GameFactory: class {
-    constructor() {
+    constructor(validator) {
+      this.validator = validator;
       this.optionsFactory = new GameOptionCollectionFactory();
-      this.validator = new validation.GameValidator();
     }
 
     create(settings) {
