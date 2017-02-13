@@ -21,25 +21,26 @@ Game coding
   * get: `GameOption[]` (a copy)
 
 * GameFactory
-  * constructor(validator: `GameValidator`): `Game`
+  * constructor(validator: `GameValidator`)
   * create(settings: `json`): `Game`
+
+* GameMatchFactory
+  * constructor(validator: `GameMatchValidator`)
+  * create(game: `Game`, playerOptions: `PlayerOption[]`): `GameMatch`
+  
+* GameMatchValidator
+  * validate(match: `GameMatch`): `boolean`
 
 * GameValidator
   * validate(settings: `json`): `boolean`
 
-* GameMatchValidator
-  * validate(match: `GameMatch`): `boolean`
-
 * GameMatch (a match with many  players)
-  * constructor(validator: `GameMatchValidator`)
-  * for(game: `Game`)
-  * between(playerOptions: `PlayerOption[]`): `MatchResult[]`
+  * constructor(game: `Game`, playerOptions: `PlayerOption[]`)
+  * result(): `MatchResult[]`
 
 * GameDuel (a match with only two players)
-  * constructor(validator: `GameMatchValidator`)
-  * for(game: `Game`)
-  * between(playerOne: `PlayerOption`): `itself`
-  * and(playerTwo: `PlayerOption`): `MatchResult`
+  * constructor(game: `Game`, playerOne: `PlayerOption`, playerTwo: `PlayerOption`)
+  * result(): `MatchResult`
 
 * MachinePlayer
   * constructor(game: `Game`)
