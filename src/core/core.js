@@ -21,7 +21,18 @@ module.exports = {
       let gameOptions = [];
 
       this.size = () => gameOptions.length;
-      this.get = () => gameOptions.slice();
+
+      this.get = (which) => {
+        if (typeof which === 'string') {
+          return gameOptions.find(opt => opt.getName() === which);
+        }
+
+        if (typeof which === 'number') {
+          return gameOptions[which];
+        }
+
+        return gameOptions.slice();
+      };
 
       this.add = (gameOption) => {
         gameOptions.push(gameOption);

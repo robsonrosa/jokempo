@@ -23,21 +23,21 @@ describe('GameFactory', () => {
     });
 
     it('Então o jogo deve ter três opções válidas', () => {
-      let rock = game.getOptions().get()[0];
+      let rock = game.getOptions().get('rock');
       expect(rock.getName()).to.be.equals('rock');
       expect(rock.getLoses()[0].getName()).to.be.equals('paper');
       expect(rock.getWins()[0].getName()).to.be.equals('scissor');
       expect(rock.getLoses()).to.have.length(1);
       expect(rock.getWins()).to.have.length(1);
 
-      let paper = game.getOptions().get()[1];
+      let paper = game.getOptions().get('paper');
       expect(paper.getName()).to.be.equals('paper');
       expect(paper.getLoses()[0].getName()).to.be.equals('scissor');
       expect(paper.getWins()[0].getName()).to.be.equals('rock');
       expect(paper.getLoses()).to.have.length(1);
       expect(paper.getWins()).to.have.length(1);
 
-      let scissor = game.getOptions().get()[2];
+      let scissor = game.getOptions().get('scissor');
       expect(scissor.getName()).to.be.equals('scissor');
       expect(scissor.getLoses()[0].getName()).to.be.equals('rock');
       expect(scissor.getWins()[0].getName()).to.be.equals('paper');

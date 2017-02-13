@@ -37,11 +37,31 @@ describe('GameOptionCollection', () => {
   });
 
   describe('Quando eu solicitar as opções de uma coleção', () => {
-    let options = getNewCollection().add(option).get();
 
-    it('Então as opções deverão ser retornadas', () => {
-      expect(options[0].getName()).to.be.equals('option');
+    describe('E não passar parâmetro algum', () => {
+      let options = getNewCollection().add(option).get();
+
+      it('Então as opções deverão ser retornadas', () => {
+        expect(options[0].getName()).to.be.equals('option');
+      });
     });
+
+    describe('E passar um número como parâmetro', () => {
+      let found = getNewCollection().add(option).get(0);
+
+      it('Então deverá ser retornada a opção do índice informado', () => {
+        expect(found.getName()).to.be.equals('option');
+      });
+    });
+
+    describe('E passar uma string como parâmetro', () => {
+      let found = getNewCollection().add(option).get('option');
+
+      it('Então deverá ser retornada a opção cujo nome coincide com a string informada', () => {
+        expect(found.getName()).to.be.equals('option');
+      });
+    });
+
   });
 
   describe('Quando eu alterar as opções obtidas de uma coleção', () => {
