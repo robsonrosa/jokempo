@@ -18,7 +18,7 @@ describe('GameMatchFactory', () => {
     let match = new factory.GameMatchFactory(validator).create(game, players);
 
     it('Então a partida deve existir', () => {
-      expect(match).to.exists;
+      expect(match).to.exist;
     });
 
     it('Então a partida deve ter o jogo informado', () => {

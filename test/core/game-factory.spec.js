@@ -14,7 +14,7 @@ describe('GameFactory', () => {
     let game = new factory.GameFactory(validator).create(settings);
 
     it('Então o jogo deve existir', () => {
-      expect(game).to.exists;
+      expect(game).to.exist;
     });
 
     it('Então o jogo deve ter o nome igual a "Test"', () => {
