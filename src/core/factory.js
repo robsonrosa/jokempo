@@ -1,5 +1,6 @@
 let util = require('./util');
 let core = require('./core');
+let validation = require('./validation');
 
 class GameOptionCollectionFactory {
   create(options) {
@@ -60,11 +61,14 @@ module.exports = {
   GameFactory: class {
     constructor() {
       this.optionsFactory = new GameOptionCollectionFactory();
+      this.validator = new validation.GameValidator();
     }
 
     create(settings) {
       let { name, description, options } = this.disassembly(settings);
-      return new core.Game(name, description, options);
+      let game = new core.Game(name, description, options);
+      this.validator.validate(game);
+      return game;
     }
 
     disassembly(settings) {

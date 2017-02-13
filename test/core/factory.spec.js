@@ -48,10 +48,10 @@ describe('GameFactory', () => {
       expect(scissor.getLoses()).to.have.length(1);
       expect(scissor.getWins()).to.have.length(1);
     });
-  });
 
-  it('Deve verificar se foi criado um jogo válido', () => {
-    expect(validatorStub.calledWithMatch(sinon.match.instanceOf(core.Game))).to.be.true;
-    validatorStub.restore();
+    it('Deve verificar se foi criado um jogo válido', () => {
+      expect(validatorStub.calledWithMatch(sinon.match.instanceOf(core.Game))).to.be.true;
+      validatorStub.restore();
+    });
   });
 });
