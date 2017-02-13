@@ -42,8 +42,9 @@ module.exports = {
   },
 
   PlayerOption: class {
-    constructor(name, option) {
-
+    constructor(name, choice) {
+      this.getName = () => name;
+      this.getChoice = () => choice;
     }
   }
 
