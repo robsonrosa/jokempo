@@ -81,5 +81,11 @@ module.exports = {
         options: this.optionsFactory.create(util.array(settings.options))
       };
     }
+  },
+
+  GameMatchFactory: class {
+    create(game, playerOptions) {
+      return null;
+    }
   }
 };
