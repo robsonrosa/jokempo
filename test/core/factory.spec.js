@@ -30,14 +30,14 @@ describe('GameFactory', () => {
       expect(rock.getLoses()).to.have.length(1);
       expect(rock.getWins()).to.have.length(1);
 
-      let paper = game.getOptions().get()[0];
+      let paper = game.getOptions().get()[1];
       expect(paper.getName()).to.be.equals('paper');
       expect(paper.getLoses()[0].getName()).to.be.equals('scissor');
       expect(paper.getWins()[0].getName()).to.be.equals('rock');
       expect(paper.getLoses()).to.have.length(1);
       expect(paper.getWins()).to.have.length(1);
 
-      let scissor = game.getOptions().get()[0];
+      let scissor = game.getOptions().get()[2];
       expect(scissor.getName()).to.be.equals('scissor');
       expect(scissor.getLoses()[0].getName()).to.be.equals('rock');
       expect(scissor.getWins()[0].getName()).to.be.equals('paper');
