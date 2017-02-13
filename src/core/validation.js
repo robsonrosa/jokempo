@@ -40,9 +40,13 @@ let duplicate = {
 };
 
 let unknownOption = {
-  message: 'unknown.',
+  message: 'Existe uma condição de vitória ou derrota não listada como uma opção.',
   validate(settings) {
-    return util.hasValue(settings.options) && settings.options.length >= 3;
+    return !settings.options.some(option => {
+      let unknowLoser = option.wins.some(loser => !settings.options.some(o => o.name === loser));
+      let unknowWinner = option.loses.some(winner => !settings.options.some(o => o.name === winner));
+      return unknowLoser || unknowWinner;
+    });
   }
 };
 
@@ -68,16 +72,16 @@ let loseAndWin = {
 };
 
 let winItself = {
-  message: '',
+  message: 'Não pode haver uma opção vence de si mesma.',
   validate(settings) {
-    return true;
+    return !settings.options.some(option => option.wins.some(w => w === option.name));
   }
 };
 
 let loseItself = {
-  message: '',
+  message: 'Não pode haver uma opção perde de si mesma.',
   validate(settings) {
-    return true;
+    return !settings.options.some(option => option.loses.some(l => l === option.name));
   }
 };
 
