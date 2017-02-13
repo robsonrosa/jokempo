@@ -26,6 +26,9 @@ Game coding
 * GameValidator
   * validate(settings: `json`): `boolean`
 
+* GameMatchValidator
+  * validate(match: `GameMatch`): `boolean`
+
 * GameMatch (a match with many  players)
   * constructor(game: `Game`)
   * between(playerOptions: `PlayerOption[]`): `MatchResult[]`
