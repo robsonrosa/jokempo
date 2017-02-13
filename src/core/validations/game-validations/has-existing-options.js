@@ -1,5 +1,3 @@
-var util = require('../util');
-
 module.exports = {
   message: 'Existe uma condição de vitória ou derrota não listada como uma opção.',
 

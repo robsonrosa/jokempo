@@ -1,4 +1,4 @@
-var util = require('../util');
+var util = require('../../util');
 
 module.exports = {
   message: 'Não pode haver uma opção que nunca perde.',

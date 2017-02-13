@@ -1,5 +1,3 @@
-var util = require('../util');
-
 module.exports = {
   message: 'Não pode haver uma opção perde de si mesma.',
 

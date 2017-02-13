@@ -1,4 +1,4 @@
-var util = require('../util');
+var util = require('../../util');
 
 module.exports = {
   message: 'É necessário informar um conjunto de configurações válidas.',

@@ -1,4 +1,4 @@
-var util = require('../util');
+var util = require('../../util');
 const VALIDATION_MIN_OPTIONS = 3;
 
 module.exports = {

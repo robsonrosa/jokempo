@@ -1,4 +1,4 @@
-var util = require('../util');
+var util = require('../../util');
 
 module.exports = {
   message: 'A descrição do jogo deve ser informada.',
