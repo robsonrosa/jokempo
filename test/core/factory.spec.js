@@ -13,8 +13,8 @@ describe('GameFactory', () => {
   describe('Quando eu criar uma instância de um jogo sem informar configurações', () => {
     let game = new factory.GameFactory(validator).create(null);
 
-    it('Então nenhum erro deve ocorrer, pois o GameValidator estará encarregado de verificar se é um jogo válido', () => {
-      expect(game).to.exists;
+    it('Então deve retornar null sem ocorrer erro, pois o GameValidator estará encarregado de verificar se é um jogo válido', () => {
+      expect(game).to.not.exists;
     });
   });
 
