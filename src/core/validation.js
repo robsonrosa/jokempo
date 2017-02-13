@@ -2,81 +2,81 @@ let util = require('./util');
 
 let hasSettings = {
   message: 'É necessário informar um conjunto de configurações válidas.',
-  validate(game) {
-    return util.hasValue(game);
+  validate(settings) {
+    return util.hasValue(settings);
   }
 };
 
 let hasName = {
   message: 'O nome do jogo deve ser informado.',
-  validate(game) {
-    return util.hasValue(game.name);
+  validate(settings) {
+    return util.hasValue(settings.name);
   }
 };
 
 let hasDescription = {
   message: 'A descrição do jogo deve ser informada.',
-  validate(game) {
-    return util.hasValue(game.description);
+  validate(settings) {
+    return util.hasValue(settings.description);
   }
 };
 
 let hasOptions = {
   message: 'Não há opções suficientes para esse jogo funcionar.',
-  validate(game) {
-    return util.hasValue(game.options) && game.options.length >= 3;
+  validate(settings) {
+    return util.hasValue(settings.options) && settings.options.length >= 3;
   }
 };
 
 let duplicate = {
   message: 'Não pode haver duas ou mais opções com o mesmo nome.',
-  validate(game) {
-    return game.options.filter((thisElement, thisIndex) => {
-      let anotherElement = game.options.filter(e => e.name === thisElement.name)[0];
-      let thatIndex = game.options.indexOf(anotherElement);
+  validate(settings) {
+    return settings.options.filter((thisElement, thisIndex) => {
+      let anotherElement = settings.options.filter(e => e.name === thisElement.name)[0];
+      let thatIndex = settings.options.indexOf(anotherElement);
       return thisIndex === thatIndex;
-    }).length === game.options.length;
+    }).length === settings.options.length;
   }
 };
 
 let unknownOption = {
   message: 'unknown.',
-  validate(game) {
-    return util.hasValue(game.options) && game.options.length >= 3;
+  validate(settings) {
+    return util.hasValue(settings.options) && settings.options.length >= 3;
   }
 };
 
 let canWin = {
   message: 'Não pode haver uma opção que nunca vence.',
-  validate(game) {
-    return game.options.filter(e => util.isEmpty(e.wins)).length === 0;
+  validate(settings) {
+    return settings.options.filter(e => util.isEmpty(e.wins)).length === 0;
   }
 };
 
 let canLose = {
   message: 'Não pode haver uma opção que nunca perde.',
-  validate(game) {
-    return game.options.filter(e => util.isEmpty(e.loses)).length === 0;
+  validate(settings) {
+    return settings.options.filter(e => util.isEmpty(e.loses)).length === 0;
   }
 };
 
 let loseAndWin = {
   message: 'Não pode haver uma opção que vence e perde para a mesma opção.',
-  validate(game) {
-    return game.options.find(e => e.wins.some(w => e.loses.find(l => w === l))) === undefined;
+  validate(settings) {
+    return settings.options.find(e => e.wins.some(w => e.loses.find(l => w === l))) === undefined;
   }
 };
 
 let winItself = {
   message: '',
-  validate(game) {
+  validate(settings) {
     return true;
   }
 };
 
 let loseItself = {
   message: '',
-  validate(game) {
+  validate(settings) {
     return true;
   }
 };
@@ -98,15 +98,15 @@ module.exports = {
         loseItself
       ];
 
-      this.invoke = (rule, game) => {
-        if (!rule.validate(game)) {
+      this.invoke = (rule, settings) => {
+        if (!rule.validate(settings)) {
           throw rule.message;
         }
       };
     }
 
-    validate(game) {
-      this.validations.forEach(rule => this.invoke(rule, game));
+    validate(settings) {
+      this.validations.forEach(rule => this.invoke(rule, settings));
       return true;
     }
   }
