@@ -84,8 +84,14 @@ module.exports = {
   },
 
   GameMatchFactory: class {
+    constructor(validator) {
+      this.validator = validator;
+    }
+
     create(game, playerOptions) {
-      return null;
+      let match = new core.GameMatch(game, playerOptions);
+      this.validator.validate(match);
+      return match;
     }
   }
 };
