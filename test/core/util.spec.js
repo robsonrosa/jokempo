@@ -100,7 +100,7 @@ describe('Utils', () => {
 
     describe('Quando eu chamar o método isEmpty passando um array com um elemento', () => {
       let result = util.isEmpty([1]);
-      it('Então o resultado deverá ser false', () => {
+      it('Então o resultado deverá ser verdadeiro', () => {
         expect(result).to.be.false;
       });
     });
@@ -158,8 +158,49 @@ describe('Utils', () => {
 
     describe('Quando eu chamar o método array passando um array com um elemento', () => {
       let result = util.array([1]);
-      it('Então o resultado deverá ser false', () => {
+      it('Então o resultado deverá ser verdadeiro', () => {
         expect(result).to.be.deep.equals([1]);
+      });
+    });
+  });
+
+  describe('.duplicated', () => {
+    describe('Quando eu chamar o método duplicated sem informar um array', () => {
+      let result = util.duplicated(null);
+      it('Então o resultado deverá ser falso', () => {
+        expect(result).to.be.false;
+      });
+    });
+
+    describe('Quando eu chamar o método duplicated sem inforar uma função de comparação', () => {
+      describe('E eu informo um array sem duplicatas', () => {
+        let result = util.duplicated(['ok', 'nok']);
+        it('Então o resultado deverá ser a comparação de cada elemento', () => {
+          expect(result).to.be.false;
+        });
+      });
+
+      describe('E eu informo um array com duplicatas', () => {
+        let result = util.duplicated(['ok', 'ok']);
+        it('Então o resultado deverá ser a comparação de cada elemento', () => {
+          expect(result).to.be.true;
+        });
+      });
+    });
+
+    describe('Quando eu chamar o método duplicated passando uma função de comparação', () => {
+      describe('E eu informo um array sem duplicatas', () => {
+        let result = util.duplicated([{ name: 'ok' }, { name: 'nok' }], e => e.name);
+        it('Então o resultado deverá ser a comparação usando a função de comparação', () => {
+          expect(result).to.be.false;
+        });
+      });
+
+      describe('E eu informo um array sem duplicatas', () => {
+        let result = util.duplicated([{ name: 'ok' }, { name: 'ok' }], e => e.name);
+        it('Então o resultado deverá ser a comparação usando a função de comparação', () => {
+          expect(result).to.be.true;
+        });
       });
     });
   });
