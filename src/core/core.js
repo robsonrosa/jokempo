@@ -37,7 +37,13 @@ module.exports = {
       this.add = (gameOption) => {
         gameOptions.push(gameOption);
         return this;
-      }
+      };
+    }
+  },
+
+  PlayerOption: class {
+    constructor(name, option) {
+
     }
   }
 
