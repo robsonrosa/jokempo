@@ -19,9 +19,14 @@ module.exports = {
   GameOptionCollection: class {
     constructor() {
       let gameOptions = [];
+
       this.size = () => gameOptions.length;
       this.get = () => gameOptions.slice();
-      this.add = (gameOption) => gameOptions.push(gameOption);
+
+      this.add = (gameOption) => {
+        gameOptions.push(gameOption);
+        return this;
+      }
     }
   }
 
