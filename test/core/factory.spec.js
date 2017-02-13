@@ -1,13 +1,17 @@
+var sinon = require('sinon');
 var chai = require('chai');
 var expect = chai.expect;
 
 var core = require('../../src/core/core');
 var factory = require('../../src/core/factory');
+var validation = require('../../src/core/validation');
 var settings = require('../resources/settings.json');
 
 describe('GameFactory', () => {
 
   describe('Quando eu criar uma instância de um jogo', () => {
+
+    let validatorStub = sinon.stub(validation.GameValidator.prototype, 'validate');
     let game = new factory.GameFactory().create(settings);
 
     it('Então o jogo deve existir', () => {
@@ -46,4 +50,8 @@ describe('GameFactory', () => {
     });
   });
 
+  it('Deve verificar se foi criado um jogo válido', () => {
+    expect(validatorStub.calledWithMatch(sinon.match.instanceOf(core.Game))).to.be.true;
+    validatorStub.restore();
+  });
 });
