@@ -8,10 +8,17 @@ var validation = require('../../src/core/validation');
 var settings = require('../resources/settings.json');
 
 describe('GameFactory', () => {
+  let validatorStub = sinon.stub(validation.GameValidator.prototype, 'validate');
+
+  describe('Quando eu criar uma instância de um jogo sem informar configurações', () => {
+    let game = new factory.GameFactory().create(null);
+
+    it('Então nenhum erro deve ocorrer, pois o GameValidator estará encarregado de verificar se é um jogo válido', () => {
+      expect(game).to.exists;
+    });
+  });
 
   describe('Quando eu criar uma instância de um jogo', () => {
-
-    let validatorStub = sinon.stub(validation.GameValidator.prototype, 'validate');
     let game = new factory.GameFactory().create(settings);
 
     it('Então o jogo deve existir', () => {
