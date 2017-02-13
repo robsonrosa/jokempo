@@ -1,0 +1,32 @@
+{
+  "description": "Test Description",
+  "options": [
+    {
+      "name": "rock",
+      "loses": [
+        "paper"
+      ],
+      "wins": [
+        "scissor"
+      ]
+    },
+    {
+      "name": "paper",
+      "loses": [
+        "scissor"
+      ],
+      "wins": [
+        "rock"
+      ]
+    },
+    {
+      "name": "scissor",
+      "loses": [
+        "rock"
+      ],
+      "wins": [
+        "paper"
+      ]
+    }
+  ]
+}
