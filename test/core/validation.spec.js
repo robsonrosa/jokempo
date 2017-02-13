@@ -21,8 +21,7 @@ var winItself = require('./../resources/win-itself');
 var loseItself = require('./../resources/lose-itself');
 
 describe('GameValidator', () => {
-  let build = (settings) => new factory.GameFactory({ validate: sinon.spy() }).create(settings);
-  let validate = (settings) => () => new validation.GameValidator().validate(build(settings));
+  let validate = (scenario) => () => new validation.GameValidator().validate(scenario);
 
   describe('Configuração válida', () => {
     describe('Quando eu informar configurações válidas de um jogo', () => {

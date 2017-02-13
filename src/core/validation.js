@@ -10,60 +10,60 @@ let hasSettings = {
 let hasName = {
   message: 'O nome do jogo deve ser informado.',
   validate(game) {
-    return util.hasValue(game.getName());
+    return util.hasValue(game.name);
   }
 };
 
 let hasDescription = {
   message: 'A descrição do jogo deve ser informada.',
   validate(game) {
-    return util.hasValue(game.getDescription());
+    return util.hasValue(game.description);
   }
 };
 
 let hasOptions = {
   message: 'Não há opções suficientes para esse jogo funcionar.',
   validate(game) {
-    return util.hasValue(game.getOptions()) && game.getOptions().size() >= 3;
+    return util.hasValue(game.options) && game.options.length >= 3;
   }
 };
 
 let duplicate = {
   message: 'Não pode haver duas ou mais opções com o mesmo nome.',
   validate(game) {
-    return game.getOptions().get().filter((thisElement, thisIndex) => {
-      let anotherElement = game.getOptions().get().filter(e => e.getName() === thisElement.getName())[0];
-      let thatIndex = game.getOptions().get().indexOf(anotherElement);
+    return game.options.filter((thisElement, thisIndex) => {
+      let anotherElement = game.options.filter(e => e.name === thisElement.name)[0];
+      let thatIndex = game.options.indexOf(anotherElement);
       return thisIndex === thatIndex;
-    }).length === game.getOptions().size();
+    }).length === game.options.length;
   }
 };
 
 let unknownOption = {
   message: 'unknown.',
   validate(game) {
-    return util.hasValue(game.getOptions()) && game.getOptions().size() >= 3;
+    return util.hasValue(game.options) && game.options.length >= 3;
   }
 };
 
 let canWin = {
   message: 'Não pode haver uma opção que nunca vence.',
   validate(game) {
-    return game.getOptions().get().filter(e => util.isEmpty(e.getWins())).length === 0;
+    return game.options.filter(e => util.isEmpty(e.wins)).length === 0;
   }
 };
 
 let canLose = {
   message: 'Não pode haver uma opção que nunca perde.',
   validate(game) {
-    return game.getOptions().get().filter(e => util.isEmpty(e.getLoses())).length === 0;
+    return game.options.filter(e => util.isEmpty(e.loses)).length === 0;
   }
 };
 
 let loseAndWin = {
   message: 'Não pode haver uma opção que vence e perde para a mesma opção.',
   validate(game) {
-    return game.getOptions().get().filter(e => e.getWins().some(w => e.getLoses().filter(l => w.getName() === l.getName()).length > 0)).length === 0;
+    return game.options.find(e => e.wins.some(w => e.loses.find(l => w === l))) === undefined;
   }
 };
 

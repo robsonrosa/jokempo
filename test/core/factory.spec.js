@@ -10,14 +10,6 @@ var settings = require('../resources/settings.json');
 describe('GameFactory', () => {
   let validator = { validate: sinon.spy() };
 
-  describe('Quando eu criar uma instância de um jogo sem informar configurações', () => {
-    let game = new factory.GameFactory(validator).create(null);
-
-    it('Então deve retornar null sem ocorrer erro, pois o GameValidator estará encarregado de verificar se é um jogo válido', () => {
-      expect(game).to.not.exists;
-    });
-  });
-
   describe('Quando eu criar uma instância de um jogo', () => {
     let game = new factory.GameFactory(validator).create(settings);
 
@@ -57,7 +49,7 @@ describe('GameFactory', () => {
     });
 
     it('Deve verificar se foi criado um jogo válido', () => {
-      expect(validator.validate.calledWithMatch(sinon.match.instanceOf(core.Game))).to.be.true;
+      expect(validator.validate.calledWith(settings)).to.be.true;
     });
   });
 });

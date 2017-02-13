@@ -65,14 +65,9 @@ module.exports = {
     }
 
     create(settings) {
-      if (!util.hasValue(settings)) {
-        return null;
-      }
-
+      this.validator.validate(settings);
       let { name, description, options } = this.disassembly(settings);
-      let game = new core.Game(name, description, options);
-      this.validator.validate(game);
-      return game;
+      return new core.Game(name, description, options);
     }
 
     disassembly(settings) {
