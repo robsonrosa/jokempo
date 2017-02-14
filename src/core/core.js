@@ -1,4 +1,5 @@
 let util = require('./util');
+let resultProperty = Symbol();
 
 class BattleVictory {
   for(winner) {
@@ -119,10 +120,18 @@ module.exports = {
     constructor(game, playerOptions) {
       this.getGame = () => game;
       this.getPlayerOptions = () => playerOptions;
+      this[resultProperty] = null;
     }
 
     result() {
-      let results = [];
+      let results = this[resultProperty];
+
+      if (results) {
+        return results;
+      }
+
+      results = [];
+
       let players = this.getPlayerOptions();
       let n = players.length;
 
@@ -135,6 +144,7 @@ module.exports = {
         }
       }
 
+      this[resultProperty] = results;
       return results;
     }
   }

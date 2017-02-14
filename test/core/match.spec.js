@@ -169,7 +169,7 @@ describe('GameMatch', () => {
     let result = match.result();
 
     it('Então o resultado deverá ser sempre o mesmo', () => {
-      expect(match.result()).to.be.same(result);
+      expect(match.result()).to.satisfy(r => r === result);
     });
   });
 
