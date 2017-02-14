@@ -66,6 +66,39 @@ class Battle {
   }
 }
 
+class GameMatch {
+  constructor(game, playerOptions) {
+    this.getGame = () => game;
+    this.getPlayerOptions = () => playerOptions;
+    this[resultProperty] = null;
+  }
+
+  result() {
+    let results = this[resultProperty];
+
+    if (results) {
+      return results;
+    }
+
+    results = [];
+
+    let players = this.getPlayerOptions();
+    let n = players.length;
+
+    for (let i = 0; i < n; i++) {
+      for (let j = i + 1; j < n; j++) {
+        let challenger = players[i];
+        let opponent = players[j];
+        let battle = new Battle().between(challenger).and(opponent);
+        results.push(battle.result());
+      }
+    }
+
+    this[resultProperty] = results;
+    return results;
+  }
+}
+
 module.exports = {
 
   Game: class {
@@ -116,36 +149,15 @@ module.exports = {
     }
   },
 
-  GameMatch: class {
-    constructor(game, playerOptions) {
-      this.getGame = () => game;
-      this.getPlayerOptions = () => playerOptions;
-      this[resultProperty] = null;
+  GameMatch: GameMatch,
+
+  GameDuel: class {
+    constructor(game, challenger, opponent) {
+      this.match = new GameMatch(game, [challenger, opponent]);
     }
 
     result() {
-      let results = this[resultProperty];
-
-      if (results) {
-        return results;
-      }
-
-      results = [];
-
-      let players = this.getPlayerOptions();
-      let n = players.length;
-
-      for (let i = 0; i < n; i++) {
-        for (let j = i + 1; j < n; j++) {
-          let challenger = players[i];
-          let opponent = players[j];
-          let battle = new Battle().between(challenger).and(opponent);
-          results.push(battle.result());
-        }
-      }
-
-      this[resultProperty] = results;
-      return results;
+      return this.match.result()[0];
     }
   }
 
