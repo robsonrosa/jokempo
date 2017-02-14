@@ -53,7 +53,7 @@ Game coding
 * MatchResult
   * hasWinner: `boolean`
   * winner: `string`
-  * losers: `string[]`
+  * loser: `string`
   * toString(): `string` (pre checked message for winner or draw)
 
 * Settings Structure
