@@ -10,9 +10,9 @@ var settings = require('../resources/settings.json');
 describe('GameMatchValidator', () => {
   let game = new factory.GameFactory({ validate: sinon.spy() }).create(settings);
   let validate = (scenario) => () => new validation.GameMatchValidator().validate(scenario);
-  let p0 = new core.PlayerOption('p0', 'p0');
-  let p1 = new core.PlayerOption('p1', game.getOptions().get(0).getName());
-  let p2 = new core.PlayerOption('p2', game.getOptions().get(1).getName());
+  let p0 = new core.PlayerOption('p0', new core.GameOption('p0'));
+  let p1 = new core.PlayerOption('p1', game.getOptions().get(0));
+  let p2 = new core.PlayerOption('p2', game.getOptions().get(1));
   let p22 = p2;
 
   describe('Configuração válida', () => {

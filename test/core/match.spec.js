@@ -3,24 +3,27 @@ var chai = require('chai');
 var expect = chai.expect;
 
 var core = require('../../src/core/core');
+var factory = require('../../src/core/factory');
+var settings = require('../resources/settings.json');
 
-let factorial = n => n - 1 <= 0 ? n : n * factorial(n - 1);
-let combinatorialAnalysis = n => (factorial(n) / factorial(n - 2)) / 2;
+
 //(setSize! / (setSize - subSetSize)!) / 2!
+let factorial = n => n <= 1 ? n : n * factorial(n - 1);
+let combinatorialAnalysis = n => n <= 2 ? n - 1: (factorial(n) / factorial(n - 2)) / 2;
 
 describe('GameMatch', () => {
-  let game = new core.Game('name', 'description', new core.GameOptionCollection());
-  let p1 = new core.PlayerOption('p1', 'rock');
-  let p2 = new core.PlayerOption('p2', 'paper');
-  let p3 = new core.PlayerOption('p3', 'scissor');
-  let p4 = new core.PlayerOption('p4', 'scissor');
+  let game = new factory.GameFactory({ validate: sinon.spy() }).create(settings);
+  let p1 = new core.PlayerOption('p1', game.getOptions().get('rock'));
+  let p2 = new core.PlayerOption('p2', game.getOptions().get('paper'));
+  let p3 = new core.PlayerOption('p3', game.getOptions().get('scissor'));
+  let p4 = new core.PlayerOption('p4', game.getOptions().get('scissor'));
   let duel = [p1, p2];
   let threesome = [p1, p2, p3];
 
   describe('Quando eu instanciar uma partida', () => {
     let match = new core.GameMatch(game, duel);
 
-    it('Então ela deve ser inicializado com um nome', () => {
+    it('Então ela deve ser inicializado com um jogo', () => {
       expect(match.getGame()).to.be.deep.equals(game);
     });
 
@@ -51,19 +54,19 @@ describe('GameMatch', () => {
         let result = new core.GameMatch(game, [p1, p2]).result()[0];
 
         it('Então o único resultado não será um empate', () => {
-          expect(result.hasWinner).to.be.true;
+          expect(result.hasWinner()).to.be.true;
         });
 
         it('Então o único resultado terá playerTwo como vencedor', () => {
-          expect(result.winner).to.be.deep.equals(p2);
+          expect(result.getWinner()).to.be.deep.equals(p2);
         });
 
         it('Então o único resultado terá playerOne como perdedor', () => {
-          expect(result.loser).to.be.deep.equals(p1);
+          expect(result.getLoser()).to.be.deep.equals(p1);
         });
 
         it('Então a mensagem do resultado deverá tornar explícito o resultado da partida', () => {
-          expect(result.toString()).to.be.equals('Vitória de "p2"! Escolheu "paper" e venceu de "p1" que escolheu "paper"');
+          expect(result.toString()).to.be.equals('Vitória de "p2"! Escolheu "paper" e venceu de "p1" que escolheu "rock"');
         });
       });
 
@@ -72,15 +75,15 @@ describe('GameMatch', () => {
         let result = new core.GameMatch(game, [p3, p4]).result()[0];
 
         it('Então o único resultado será um empate', () => {
-          expect(result.hasWinner).to.be.false;
+          expect(result.hasWinner()).to.be.false;
         });
 
         it('Então o único resultado não terá vencedor', () => {
-          expect(result.winner).to.not.exist;
+          expect(result.getWinner()).to.not.exist;
         });
 
         it('Então o único resultado não terá perdedor', () => {
-          expect(result.loser).to.not.exist;
+          expect(result.getLoser()).to.not.exist;
         });
 
         it('Então a mensagem do resultado deverá tornar explícito o resultado da partida', () => {
@@ -111,49 +114,49 @@ describe('GameMatch', () => {
           let first = results[0];
 
           it('Então o primeiro resultado não será um empate', () => {
-            expect(first.hasWinner).to.be.true;
+            expect(first.hasWinner()).to.be.true;
           });
 
           it('Então o primeiro resultado terá playerTwo como vencedor', () => {
-            expect(first.winner).to.be.deep.equals(p2);
+            expect(first.getWinner()).to.be.deep.equals(p2);
           });
 
           it('Então o primeiro resultado terá playerOne como perdedor', () => {
-            expect(first.loser).to.be.deep.equals(p1);
+            expect(first.getLoser()).to.be.deep.equals(p1);
           });
         });
 
         // p1 vs p3 (rock vs scissor)
         describe('2', () => {
-          let second = results[0];
+          let second = results[1];
 
           it('Então o segundo resultado não será um empate', () => {
-            expect(second.hasWinner).to.be.true;
+            expect(second.hasWinner()).to.be.true;
           });
 
           it('Então o segundo resultado terá playerOne como vencedor', () => {
-            expect(second.winner).to.be.deep.equals(p1);
+            expect(second.getWinner()).to.be.deep.equals(p1);
           });
 
           it('Então o segundo resultado terá playerThree como perdedor', () => {
-            expect(second.loser).to.be.deep.equals(p3);
+            expect(second.getLoser()).to.be.deep.equals(p3);
           });
         });
 
         // p2 vs p3 (paper vs scissor)
         describe('3', () => {
-          let third = results[0];
+          let third = results[2];
 
           it('Então o terceiro resultado não será um empate', () => {
-            expect(third.hasWinner).to.be.true;
+            expect(third.hasWinner()).to.be.true;
           });
 
           it('Então o terceiro resultado terá playerThree como vencedor', () => {
-            expect(third.winner).to.be.deep.equals(p3);
+            expect(third.getWinner()).to.be.deep.equals(p3);
           });
 
           it('Então o terceiro resultado terá playerTwo como perdedor', () => {
-            expect(third.loser).to.be.deep.equals(p2);
+            expect(third.getLoser()).to.be.deep.equals(p2);
           });
         });
 

@@ -1,3 +1,70 @@
+let util = require('./util');
+
+class BattleVictory {
+  for(winner) {
+    this.winner = winner;
+    return this;
+  }
+
+  against(loser) {
+    this.loser = loser;
+    return new BattleResult(this.winner, loser, { draw: false });
+  }
+}
+
+class BattleDraw {
+  between(playerOne) {
+    this.playerOne = playerOne;
+    return this;
+  }
+
+  and(playerTwo) {
+    this.playerTwo = playerTwo;
+    return new BattleResult(this.playerOne, playerTwo, { draw: true });
+  }
+
+}
+
+class BattleResult {
+  constructor(winner, loser, { draw }) {
+    this.hasWinner = () => !draw;
+    this.getWinner = () => draw ? null : winner;
+    this.getLoser = () => draw ? null : loser;
+    this.toString = () => {
+      return draw ?
+        `Empate! "${winner.getName()}" e "${loser.getName()}" escolheram "${winner.getChoice().getName()}"` :
+        `Vitória de "${winner.getName()}"! Escolheu "${winner.getChoice().getName()}" e venceu de "${loser.getName()}" que escolheu "${loser.getChoice().getName()}"`;
+    };
+  }
+}
+
+class Battle {
+  constructor() {
+    this.challengerWins = () => this.challenger.getChoice().getWins().some(loser => loser.getName() === this.opponent.getChoice().getName());
+    this.challengerLoses = () => this.challenger.getChoice().getLoses().some(winner => winner.getName() === this.opponent.getChoice().getName());
+  }
+
+  between(challenger) {
+    this.challenger = challenger;
+    return this;
+  }
+
+  and(opponent) {
+    this.opponent = opponent;
+    return this;
+  }
+
+  result() {
+    if (this.challengerWins()) {
+      return new BattleVictory().for(this.challenger).against(this.opponent);
+    } else if (this.challengerLoses()) {
+      return new BattleVictory().for(this.opponent).against(this.challenger);
+    } else {
+      return new BattleDraw().between(this.challenger).and(this.opponent);
+    }
+  }
+}
+
 module.exports = {
 
   Game: class {
@@ -55,7 +122,20 @@ module.exports = {
     }
 
     result() {
-      return [];
+      let results = [];
+      let players = this.getPlayerOptions();
+      let n = players.length;
+
+      for (let i = 0; i < n; i++) {
+        for (let j = i + 1; j < n; j++) {
+          let challenger = players[i];
+          let opponent = players[j];
+          let battle = new Battle().between(challenger).and(opponent);
+          results.push(battle.result());
+        }
+      }
+
+      return results;
     }
   }
 

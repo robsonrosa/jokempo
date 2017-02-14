@@ -6,9 +6,9 @@ var core = require('../../src/core/core');
 
 describe('PlayerOption', () => {
 
-  describe('Quando eu instanciar uma partida', () => {
+  describe('Quando eu instanciar um jogador', () => {
     let name = 'p1';
-    let choice = 'rock';
+    let choice = new core.GameOption('rock', [], []);
     let playerOption = new core.PlayerOption(name, choice);
 
     it('Então ele deve ser inicializado com um nome', () => {

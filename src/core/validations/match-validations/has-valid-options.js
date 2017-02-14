@@ -6,6 +6,6 @@ module.exports = {
   validate(match) {
     let players = match.getPlayerOptions();
     let options = match.getGame().getOptions().get();
-    return players.every(po => options.some(o => o.getName() === po.getChoice()));
+    return players.every(po => options.some(o => o.getName() === po.getChoice().getName()));
   }
 };
