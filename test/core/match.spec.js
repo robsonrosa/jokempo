@@ -161,4 +161,13 @@ describe('GameMatch', () => {
     });
   });
 
+  describe('Quando o resultado da mesma partida for socilitado diversas vezes', () => {
+    let match = new core.GameMatch(game, duel);
+    let result = match.result();
+
+    it('Então o resultado deverá ser sempre o mesmo', () => {
+      expect(match.result()).to.be.same(result);
+    });
+  });
+
 });

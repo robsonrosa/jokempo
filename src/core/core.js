@@ -53,6 +53,10 @@ module.exports = {
       this.getGame = () => game;
       this.getPlayerOptions = () => playerOptions;
     }
+
+    result() {
+      return [];
+    }
   }
 
 };
