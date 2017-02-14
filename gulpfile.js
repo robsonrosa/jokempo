@@ -10,7 +10,7 @@ gulp.task('default', function () {
 });
 
 gulp.task('mocha', function () {
-  return gulp.src(['src/core/**/*.js', 'test/**/duel.spec.js'], { read: false })
+  return gulp.src(['src/core/**/*.js', 'test/**/bot.spec.js'], { read: false })
     .pipe(mocha())
     .on('error', gutil.log);
 });
