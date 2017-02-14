@@ -47,13 +47,13 @@ Game coding
   * play(): `PlayerOption`
 
 * PlayerOption
-  * player: `string`
-  * choice: `string`
+  * name: `string`
+  * choice: `GameOption`
 
 * MatchResult
-  * hasWinner: `boolean`
-  * winner: `string`
-  * loser: `string`
+  * hasWinner(): `boolean`
+  * getWinner(): `string`
+  * getloser(): `string`
   * toString(): `string` (pre checked message for winner or draw)
 
 * Settings Structure
