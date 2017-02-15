@@ -17,6 +17,9 @@ gulp.task('build-js', () => {
 
 gulp.task('build', ['build-js', 'build-css', 'build-html']);
 gulp.task('main', sequence('clean', 'build'));
+gulp.task("watch", function() {
+    gulp.watch("src/app/**/*", ["main"]);
+});
 
 
 // from gulp/recipes
