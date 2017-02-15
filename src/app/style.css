@@ -4,6 +4,15 @@ body {
     font-family: 'Segoe UI Light';
 }
 
+a:hover {
+    border-bottom: 1px dotted #FF6600;
+}
+a {
+    color: #FF6600;
+    text-decoration: none;
+    border-bottom: 1px dotted black;
+}
+
 button:hover {
     color: #FF6600;
     border: 2px solid #FF6600;
@@ -116,4 +125,9 @@ h2.header {
 
 .description {
     font-size: small;
+}
+
+.block {
+    float: left;
+    width: 50%;
 }
