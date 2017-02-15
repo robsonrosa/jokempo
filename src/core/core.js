@@ -31,6 +31,7 @@ class BattleResult {
     this.hasWinner = () => !draw;
     this.getWinner = () => draw ? null : winner;
     this.getLoser = () => draw ? null : loser;
+    this.getDraw = () => !draw ? null : { getChoice: () => winner.getChoice() };
     this.toString = () => {
       return draw ?
         `Empate! "${winner.getName()}" e "${loser.getName()}" escolheram "${winner.getChoice().getName()}"` :

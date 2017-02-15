@@ -96,17 +96,29 @@
             </section>
 
             <section id="game" class="game hide">
-                <section id="choose" class="choice">
+                <section id="alone" class="choice">
                     <ul id="game-options" class="options"></ul>
+                </section>
+
+                <section id="watch" class="watch">
+                    <ul id="bots" class="options">
+                        <li class="option bot">
+                            <div class="image">
+                                <img id="bot1" src="./img/game-options/rock.png" alt="The bot is thinking">
+                            </div>
+                        </li>
+                        <li class="option bot">
+                            <div class="image">
+                                <img id="bot2" src="./img/game-options/rock.png" alt="The bot is thinking">
+                            </div>
+                        </li>
+                    </ul>
+                    <button id="watch-btn" type="button" onclick="window.game.watch()">Watch</button>
                 </section>
 
                 <section id="result" class="result hide">
                     <h2 id="result-message"></h2>
                     <button type="button" onclick="window.game.again()">Play Again</button>
-                </section>
-
-                <section id="watch" class="watch">
-                    <button type="button" onclick="window.game.watch()">Watch</button>
                 </section>
 
                 <section id="back" class="back">

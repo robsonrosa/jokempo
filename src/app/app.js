@@ -6,7 +6,7 @@ let types = {
 };
 
 let optionTemplate = `
-                      <li class="option" onclick="window.game.choose('%option%')">
+                      <li class="option" id="'%option%'" onclick="window.game.choose('%option%')">
                         <div class="image">
                             <img src="./img/game-options/%option%.png" alt="%option%">
                         </div>
@@ -27,19 +27,26 @@ class Game {
   constructor(config) {
     this.config = config;
     this.jokenpo = new Jokenpo(types[config.type]);
+    this.gameOptions = this.jokenpo.getGame().getOptions();
 
     this.options = document.getElementById('game-options');
-    this.watchBtn = document.getElementById('watch');
-    this.result = document.getElementById('result');
+    this.resultSession = document.getElementById('result');
     this.resultMessage = document.getElementById('result-message');
 
+    this.watchBtn = document.getElementById('watch-btn');
+    this.watchSession = document.getElementById('watch');
+    this.aloneSession = document.getElementById('alone');
+
+    this.bot1 = document.getElementById('bot1');
+    this.bot2 = document.getElementById('bot2');
+
     this.buildOptionsTemplate();
-    config.isAlone() ? hide(watch) : show(watch);
+    this.toggle();
   }
 
   buildOptionsTemplate() {
     let options = '';
-    this.jokenpo.getGame().getOptions().get().forEach(option => {
+    this.gameOptions.get().forEach(option => {
       options = options.concat(this.buildOption(option));
     });
     this.options.innerHTML = options;
@@ -49,30 +56,68 @@ class Game {
     return optionTemplate.replace(/%option%/g, option.getName());
   }
 
-  choose(choice) {
-    // watch doesn't need to choose anything
-    if (!this.config.isAlone()) {
-      return;
+  toggle() {
+    if (this.config.isAlone()) {
+      hide(this.watchSession);
+      show(this.aloneSession);
+    } else {
+      show(this.watchSession);
+      hide(this.aloneSession);
+      this.randomize();
     }
+  }
 
+  choose(choice) {
     let player = { name: this.config.player, choice: choice };
     this.showResult(this.jokenpo.alone(player).against().bots().play());
   }
 
+  randomize() {
+    this.thinking = true;
+    let size = this.gameOptions.size();
+
+    let setRandom = (bot) => {
+      let rand = Math.floor(Math.random() * size);
+      let opt = this.gameOptions.get(rand).getName();
+      bot.src = `./img/game-options/${opt}.png`;
+      if (this.thinking) {
+        setTimeout(() => setRandom(bot), 50);
+      }
+    };
+
+    setRandom(this.bot1);
+    setRandom(this.bot2);
+  }
+
+  stopRandomize() {
+    this.thinking = false;
+    setTimeout(() => {
+      if (this.result.hasWinner()) {
+        this.bot1.src = `./img/game-options/${this.result.getWinner().getChoice().getName()}.png`;
+        this.bot2.src = `./img/game-options/${this.result.getLoser().getChoice().getName()}.png`;
+      } else {
+        this.bot1.src = `./img/game-options/${this.result.getDraw().getChoice().getName()}.png`;
+        this.bot2.src = `./img/game-options/${this.result.getDraw().getChoice().getName()}.png`;
+      }
+    }, 50);
+  }
+
   watch() {
     this.showResult(this.jokenpo.watch().bots().play());
+    this.stopRandomize();
   }
 
   again() {
-    hide(this.result);
+    hide(this.resultSession);
     show(this.watchBtn);
+    this.randomize();
   }
 
-  showResult(result) {
+  showResult(results) {
+    this.result = results[0];
     hide(this.watchBtn);
-    show(this.result);
-    console.info(result.toString());
-    this.resultMessage.innerHTML = result.toString();
+    show(this.resultSession);
+    this.resultMessage.innerHTML = this.result.toString();
   }
 }
 
