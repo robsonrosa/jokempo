@@ -1,0 +1,61 @@
+{
+  "name": "Spock",
+  "description": "rock | paper | spock | lizard",
+  "options": [
+    {
+      "name": "rock",
+      "loses": [
+        "paper",
+        "spock"
+      ],
+      "wins": [
+        "scissor",
+        "lizard"
+      ]
+    },
+    {
+      "name": "paper",
+      "loses": [
+        "scissor",
+        "lizard"
+      ],
+      "wins": [
+        "rock",
+        "spock"
+      ]
+    },
+    {
+      "name": "scissor",
+      "loses": [
+        "rock",
+        "spock"
+      ],
+      "wins": [
+        "paper",
+        "lizard"
+      ]
+    },
+    {
+      "name": "spock",
+      "loses": [
+        "paper",
+        "lizard"
+      ],
+      "wins": [
+        "rock",
+        "scissor"
+      ]
+    },
+    {
+      "name": "lizard",
+      "loses": [
+        "rock",
+        "scissor"
+      ],
+      "wins": [
+        "paper",
+        "spock"
+      ]
+    }
+  ]
+}

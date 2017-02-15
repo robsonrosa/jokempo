@@ -2,7 +2,7 @@ let { Jokenpo } = require('../core/jokenpo');
 
 let types = {
   classic: require('../resource/classic.json'),
-  //modern: require('../resource/modern.json')
+  spock: require('../resource/spock.json')
 };
 
 let optionTemplate = `

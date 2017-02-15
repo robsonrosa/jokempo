@@ -32,12 +32,12 @@
                             </div>
                         </li>
 
-                        <li class="option modern" onclick="window.settings.setType('modern')">
+                        <li class="option spock" onclick="window.settings.setType('spock')">
                             <div class="image">
-                                <img src="./img/game-type/modern.png" alt="Modern: rock, paper, scissor, spock and lizard">
+                                <img src="./img/game-type/spock.png" alt="Spock: rock, paper, scissor, spock and lizard">
                             </div>
                             <div class="title">
-                                <h3>Modern</h3>
+                                <h3>Spock</h3>
                             </div>
                             <div class="description">
                                 <p>rock | paper | scissor | spock | lizard</p>
@@ -80,13 +80,13 @@
                     </ul>
                     
                     <div id="mode-reset" class="reset hide">
+                        <button type="button" onclick="window.settings.clearMode()">Clear</button>
+
                         <div class="preferences">
                             <div id="player" class="preference hide">
                                 <input type="text" name="name" placeholder="Your Name" onkeyup="window.settings.setPlayer(this.value)">
                             </div>
                         </div>
-
-                        <button type="button" onclick="window.settings.clearMode()">Clear</button>
                     </div>
                 </section>
 
