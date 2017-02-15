@@ -1,3 +1,7 @@
 body {
     background: wheat;
 }
+
+.hide {
+    display: none;
+}

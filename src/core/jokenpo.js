@@ -101,6 +101,8 @@ class Jokenpo {
     this.alone = (player) => new Alone(instance).get(player);
     this.duel = () => new Duel(instance).get();
     this.multiplayer = (players) => new Multiplayer(instance).get(players);
+
+    this.getGame = () => game;
   }
 }
 
