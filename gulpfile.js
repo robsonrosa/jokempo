@@ -16,13 +16,13 @@ gulp.task('build-js', () => {
     .pipe(gulp.dest(dest));
 });
 
-gulp.task('build', ['build-js', 'build-img', 'build-css', 'build-html']);
-gulp.task('main', function(callback) {
-  sequence('clean', 'build')(callback);
+gulp.task('build-all', ['build-js', 'build-img', 'build-css', 'build-html']);
+gulp.task('build', function(callback) {
+  sequence('clean', 'build-all')(callback);
 });
 
 gulp.task("app", function() {
-    gulp.watch("src/app/**/*", ["main"]);
+    gulp.watch("src/app/**/*", ["build"]);
 });
 
 
@@ -32,10 +32,10 @@ var mocha = require('gulp-mocha');
 var gutil = require('gulp-util');
 
 gulp.task('default', function () {
-  gulp.watch(['src/**', 'test/**'], ['mocha']);
+  gulp.watch(['src/**', 'test/**'], ['test']);
 });
 
-gulp.task('mocha', function () {
+gulp.task('test', function () {
   return gulp.src(['src/core/**/*.js', 'test/**/*.js'], { read: false })
     .pipe(mocha())
     .on('error', gutil.log);
