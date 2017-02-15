@@ -84,7 +84,7 @@ class Watch {
   }
 }
 
-class Jokempo {
+class Jokenpo {
   constructor(settings) {
     let botId = 0;
     let players = [];
@@ -105,5 +105,5 @@ class Jokempo {
 }
 
 module.exports = {
-  Jokempo: Jokempo
+  Jokenpo: Jokenpo
 };

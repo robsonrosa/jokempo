@@ -1,4 +1,4 @@
-# jokempo
+# jokenpo
 
 ## Structure
 ### Core

@@ -1,4 +1,4 @@
-let { Jokempo } = require('../core/jokempo');
+let { Jokenpo } = require('../core/jokenpo');
 let classic = require('../resource/classic.json');
 
-console.info(new Jokempo(classic).watch().bots().play().toString());
+console.info(new Jokenpo(classic).watch().bots().play().toString());

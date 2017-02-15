@@ -1,7 +1,7 @@
 let chai = require('chai');
 let expect = chai.expect;
 
-let { Jokempo } = require('../../src/core/jokempo');
+let { Jokenpo } = require('../../src/core/jokenpo');
 let settings = require('../resources/settings.json');
 
 let options = ['rock', 'paper', 'scissor'];
@@ -15,7 +15,7 @@ let foreigner = { name: 'foreigner', choice: 'scissor' };
 describe('Integrated Tests', () => {
   describe('Quando eu assistir uma partida', () => {
     describe('E não especificar a quantidade de bots', () => {
-      let watch = new Jokempo(settings).watch().bots().play();
+      let watch = new Jokenpo(settings).watch().bots().play();
 
       it('Então deverá ter um resultado válido', () => {
         let text = watch.toString();
@@ -27,7 +27,7 @@ describe('Integrated Tests', () => {
     });
 
     describe('E especificar 4 bots', () => {
-      let watch = new Jokempo(settings).watch(4).bots().play();
+      let watch = new Jokenpo(settings).watch(4).bots().play();
 
       it('Então deverá ter 6 resultados válidos', () => {
         expect(watch).to.have.length(6);
@@ -53,7 +53,7 @@ describe('Integrated Tests', () => {
 
   describe('Quando eu jogar sozinho', () => {
     describe('E não especificar a quantidade de bots', () => {
-      let alone = new Jokempo(settings).alone(challenger).against().bots().play();
+      let alone = new Jokenpo(settings).alone(challenger).against().bots().play();
 
       it('Então deverá ter um resultado válido', () => {
         let text = alone.toString();
@@ -65,7 +65,7 @@ describe('Integrated Tests', () => {
     });
 
     describe('E especificar 2 bots', () => {
-      let alone = new Jokempo(settings).alone(challenger).against(2).bots().play();
+      let alone = new Jokenpo(settings).alone(challenger).against(2).bots().play();
 
       it('Então deverá ter 3 resultados válidos', () => {
         expect(alone).to.have.length(3);
@@ -84,7 +84,7 @@ describe('Integrated Tests', () => {
   });
 
   describe('Quando eu jogar contra outro jogador', () => {
-    let duel = new Jokempo(settings).duel().between(challenger).and(opponent).play();
+    let duel = new Jokenpo(settings).duel().between(challenger).and(opponent).play();
 
     it('Então deverá ter um resultado válido', () => {
       let text = duel.toString();
@@ -96,7 +96,7 @@ describe('Integrated Tests', () => {
   });
 
   describe('Quando eu jogar de galera', () => {
-    let multiplayer = new Jokempo(settings).multiplayer([challenger, opponent, foreigner]).play();
+    let multiplayer = new Jokenpo(settings).multiplayer([challenger, opponent, foreigner]).play();
 
     it('Então deverá ter 3 resultados válidos', () => {
       expect(multiplayer).to.have.length(3);
