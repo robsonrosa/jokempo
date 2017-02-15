@@ -1,5 +1,17 @@
 # jokenpo
 
+## How To Run
+
+* First, clone this repository
+* After accessing the properly project directory, run `npm install`
+  * _It will install test and build dependencies_
+  * _If gulp is not installed globally, run `npm i -g gulp`_
+  * _NPM packages was installed just for testing and build purpose_
+* To run tests, run `gulp test`
+* To build the app, run `gulp build`
+  * _Mandatory to run the app at first time_
+* To run a small http server to preview the app, run `gulp app`
+
 ## Structure
 ### Core
 Game coding
