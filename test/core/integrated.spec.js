@@ -5,7 +5,7 @@ let { Jokenpo } = require('../../src/core/jokenpo');
 let settings = require('../resources/settings.json');
 
 let options = ['rock', 'paper', 'scissor'];
-let results = ['Vitória', 'Empate'];
+let results = ['Victory', 'Draw'];
 let includesAtLeastOne = arr => (s => arr.some(o => s.includes(o)));
 
 let challenger = { name: 'challenger', choice: 'rock' };

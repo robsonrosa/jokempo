@@ -66,7 +66,7 @@ describe('GameMatch', () => {
         });
 
         it('Então a mensagem do resultado deverá tornar explícito o resultado da partida', () => {
-          expect(result.toString()).to.be.equals('Vitória de "p2"! Escolheu "paper" e venceu de "p1" que escolheu "rock"');
+          expect(result.toString()).to.be.equals('Victory of "p2"! The winner has chosen "paper" and won "p1" who has chosen "rock"');
         });
       });
 
@@ -87,7 +87,7 @@ describe('GameMatch', () => {
         });
 
         it('Então a mensagem do resultado deverá tornar explícito o resultado da partida', () => {
-          expect(result.toString()).to.be.equals('Empate! "p3" e "p4" escolheram "scissor"');
+          expect(result.toString()).to.be.equals('Draw! "p3" and "p4" have chosen "scissor"');
         });
       });
     });
