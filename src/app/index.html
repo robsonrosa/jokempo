@@ -8,110 +8,112 @@
         <script src="app.js"></script>
     </head>
     <body>
-        <header>
-            <h1>jo</h1>
-            <h1>ken</h1>
-            <h1>po</h1>
-        </header>
+        <div class="content">
+            <header class="header">
+                <h1>jo</h1>
+                <h1>ken</h1>
+                <h1>po</h1>
+            </header>
 
-        <section id="settings" class="settings">
-            <section class="type">
-                <h2>Game Type</h2>
+            <section id="settings" class="settings">
+                <section class="type">
+                    <h2 class="header">Game Type</h2>
 
-                <ul id="type-options" class="options">
-                    <li class="option classic" onclick="window.settings.setType('classic')">
-                        <div class="image">
-                            <img src="./img/game-type/classic.png" alt="Classic: rock, paper and scissor">
-                        </div>
-                        <div class="title">
-                            <h3>Classic</h3>
-                        </div>
-                        <div class="description">
-                            <p>Classic Jokenpo with: rock | paper | scissor.</p>
-                        </div>
-                    </li>
+                    <ul id="type-options" class="options">
+                        <li class="option classic" onclick="window.settings.setType('classic')">
+                            <div class="image">
+                                <img src="./img/game-type/classic.png" alt="Classic: rock, paper and scissor">
+                            </div>
+                            <div class="title">
+                                <h3>Classic</h3>
+                            </div>
+                            <div class="description">
+                                <p>rock | paper | scissor</p>
+                            </div>
+                        </li>
 
-                    <li class="option modern" onclick="window.settings.setType('modern')">
-                        <div class="image">
-                            <img src="./img/game-type/modern.png" alt="Modern: rock, paper, scissor, spock and lizard">
-                        </div>
-                        <div class="title">
-                            <h3>Modern</h3>
-                        </div>
-                        <div class="description">
-                            <p>Modern Jokenpo with: rock | paper | scissor | spock | lizard.</p>
-                        </div>
-                    </li>
-                </ul>
+                        <li class="option modern" onclick="window.settings.setType('modern')">
+                            <div class="image">
+                                <img src="./img/game-type/modern.png" alt="Modern: rock, paper, scissor, spock and lizard">
+                            </div>
+                            <div class="title">
+                                <h3>Modern</h3>
+                            </div>
+                            <div class="description">
+                                <p>rock | paper | scissor | spock | lizard</p>
+                            </div>
+                        </li>
+                    </ul>
 
-                <div id="type-reset" class="reset hide">
-                    <button type="button" onclick="window.settings.clearType()">Clear</button>
-                </div>
-            </section>
-
-            <section class="mode">
-                <h2>Game Mode</h2>
-
-                <ul id="mode-options" class="options">
-                    <li class="option watch" onclick="window.settings.setMode('watch')">
-                        <div class="image">
-                            <img src="./img/game-mode/watch.png" alt="Watch a battle between some bots">
-                        </div>
-                        <div class="title">
-                            <h3>Battle Bots</h3>
-                        </div>
-                        <div class="description">
-                            <p>Watch some bots facing each other.</p>
-                        </div>
-                    </li>
-
-                    <li class="option alone" onclick="window.settings.setMode('alone')">
-                        <div class="image">
-                            <img src="./img/game-mode/alone.png" alt="You against the IA">
-                        </div>
-                        <div class="title">
-                            <h3>Alone</h3>
-                        </div>
-                        <div class="description">
-                            <p>Challenge the IA and show your skills.</p>
-                        </div>
-                    </li>
-                </ul>
-                
-                <div id="mode-reset" class="reset hide">
-                    <div class="preferences">
-                        <div id="player" class="preference hide">
-                            <input type="text" name="name" placeholder="Your Name" onkeyup="window.settings.setPlayer(this.value)">
-                        </div>
+                    <div id="type-reset" class="reset hide">
+                        <button type="button" onclick="window.settings.clearType()">Clear</button>
                     </div>
+                </section>
 
-                    <button type="button" onclick="window.settings.clearMode()">Clear</button>
-                </div>
+                <section class="mode">
+                    <h2 class="header">Game Mode</h2>
+
+                    <ul id="mode-options" class="options">
+                        <li class="option watch" onclick="window.settings.setMode('watch')">
+                            <div class="image">
+                                <img src="./img/game-mode/watch.png" alt="Watch a battle between some bots">
+                            </div>
+                            <div class="title">
+                                <h3>Battle Bots</h3>
+                            </div>
+                            <div class="description">
+                                <p>Watch some bots facing each other</p>
+                            </div>
+                        </li>
+
+                        <li class="option alone" onclick="window.settings.setMode('alone')">
+                            <div class="image">
+                                <img src="./img/game-mode/alone.png" alt="You against the IA">
+                            </div>
+                            <div class="title">
+                                <h3>Alone</h3>
+                            </div>
+                            <div class="description">
+                                <p>Challenge our IA super bots</p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div id="mode-reset" class="reset hide">
+                        <div class="preferences">
+                            <div id="player" class="preference hide">
+                                <input type="text" name="name" placeholder="Your Name" onkeyup="window.settings.setPlayer(this.value)">
+                            </div>
+                        </div>
+
+                        <button type="button" onclick="window.settings.clearMode()">Clear</button>
+                    </div>
+                </section>
+
+                <section id="play" class="play hide">
+                    <button type="button" onclick="window.settings.play()">Play</button>
+                </section>
             </section>
 
-            <section id="play" class="play">
-                <button type="button" onclick="window.settings.play()">Play</button>
-            </section>
-        </section>
+            <section id="game" class="game hide">
+                <section id="choose" class="choice">
+                    <ul id="game-options" class="options"></ul>
+                </section>
 
-        <section id="game" class="game hide">
-            <section id="choose" class="choose">
-                <ul id="game-options" class="options"></ul>
-            </section>
+                <section id="result" class="result hide">
+                    <h2 id="result-message"></h2>
+                    <button type="button" onclick="window.game.again()">Play Again</button>
+                </section>
 
-            <section id="result" class="result hide">
-                <h2 id="result-message"></h2>
-                <button type="button" onclick="window.game.again()">Play Again</button>
-            </section>
+                <section id="watch" class="watch">
+                    <button type="button" onclick="window.game.watch()">Watch</button>
+                </section>
 
-            <section id="watch" class="watch">
-                <button type="button" onclick="window.game.watch()">Watch</button>
+                <section id="back" class="back">
+                    <button type="button" onclick="window.settings.back()">Back</button>
+                </section>
             </section>
-
-            <section id="back" class="back">
-                <button type="button" onclick="window.settings.back()">Back</button>
-            </section>
-        </section>
+        </div>
 
         <footer>
             <div class="project">

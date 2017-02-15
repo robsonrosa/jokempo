@@ -1,7 +1,119 @@
 body {
-    background: wheat;
+    background: black;
+    color: white;
+    font-family: 'Segoe UI Light';
+}
+
+button:hover {
+    color: #FF6600;
+    border: 2px solid #FF6600;
+}
+button {
+    cursor: pointer;
+    padding: 8px 25px;
+    color: white;
+    background-color: black;
+    font-size: small;
+    font-weight: 300;
+    text-transform: uppercase;
+    border-radius: 20px;
+    border: 2px solid white;
+    -webkit-transition: color .5s, border .5s;
+    transition: color .5s, border .5s;
+    outline: none;
+}
+
+input {
+    outline: none;
+    font-variant: small-caps;
+    padding: 10px 25px;
+    border-radius: 20px;
+    border-style: none;
+    margin: 5px 0 15px 0;
+    color: #FF6600;
 }
 
 .hide {
     display: none;
+}
+
+.fade {
+    opacity: 1;
+    transition: opacity 2s ease-in-out;
+    -moz-transition: opacity 2s ease-in-out;
+    -webkit-transition: opacity 2s ease-in-out;
+}
+
+.content {
+    width: 450px;
+    margin: auto;
+    text-align: center;
+}
+
+@media (min-width: 950px) {
+    .content {
+        width: 950px;
+    }
+}
+
+header {
+    overflow: auto;
+}
+
+header h1::first-child { 
+    margin-left: 0px;
+}
+
+header h1 {
+    text-transform: uppercase;
+    float: left;
+    margin-left: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed;
+}
+
+.options {
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    margin: auto;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+h2.header {
+    margin-bottom: 10px;
+}
+
+.option:hover {
+    color: #FF6600;
+    border: 2px solid #FF6600;
+}
+.option {
+    width: 250px;
+    margin: 25px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+
+    border: 2px solid white;
+    -webkit-transition: color .5s, border .5s;
+    transition: color .5s, border .5s;
+}
+
+.image, .title, .description, .header {
+    width: 200px;
+    margin: auto;
+    text-align: center;
+}
+
+.image {
+    margin-top: 20px; 
+}
+
+.description {
+    font-size: small;
 }

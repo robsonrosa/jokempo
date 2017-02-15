@@ -8,6 +8,7 @@ var sequence = require('gulp-sequence');
 
 gulp.task('clean', () => gulp.src(dest, { read: false, force: true }).pipe(clean()));
 gulp.task('build-css', () => gulp.src('src/app/style.css').pipe(gulp.dest(dest)));
+gulp.task('build-img', () => gulp.src('src/app/img/**/*.png').pipe(gulp.dest(dest + '/img')));
 gulp.task('build-html', () => gulp.src('src/app/index.html').pipe(gulp.dest(dest)));
 gulp.task('build-js', () => {
   gulp.src('src/app/app.js')
@@ -15,9 +16,12 @@ gulp.task('build-js', () => {
     .pipe(gulp.dest(dest));
 });
 
-gulp.task('build', ['build-js', 'build-css', 'build-html']);
-gulp.task('main', sequence('clean', 'build'));
-gulp.task("watch", function() {
+gulp.task('build', ['build-js', 'build-img', 'build-css', 'build-html']);
+gulp.task('main', function(callback) {
+  sequence('clean', 'build')(callback);
+});
+
+gulp.task("app", function() {
     gulp.watch("src/app/**/*", ["main"]);
 });
 
